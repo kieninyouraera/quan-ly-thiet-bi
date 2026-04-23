@@ -80,7 +80,7 @@
 </head>
 <body>
 
-    <h1 style="text-align: center; color: var(--primary);">🧪 Quản Lý Thiết Bị Phòng Thí Nghiệm</h1>
+    <h1 style="text-align: center; color: var(--primary);">🧪 Quản Lý Thiết Bị Phòng Lab</h1>
 
     <div class="container">
         <div class="card">
@@ -95,12 +95,12 @@
                     <select id="deviceId">
                         <optgroup label="Lò Nung">
                             <option value="lo-vuong">Lò Nung Vuông</option>
-                            <option value="lo-nho">Lò Nung Nhỏ</option>
+                            <option value="lo-nho">Lò Nung Trong Phòng</option>
                         </optgroup>
-                        <optgroup label="Máy Khuấy Từ (Có 3 máy)">
+                        <optgroup label="Máy Khuấy Từ">
                             <option value="khuay-tu">Máy Khuấy Từ</option>
                         </optgroup>
-                        <optgroup label="Khác">
+                        <optgroup label="Máy Li Tâm">
                             <option value="may-li-tam">Máy Li Tâm</option>
                         </optgroup>
                     </select>
@@ -169,7 +169,7 @@
             });
 
             if (newB.device === 'khuay-tu') {
-                return overlaps.length >= 3 ? { userName: "Cả 3 máy khuấy đều đang bận" } : null;
+                return overlaps.length >= 3 ? { userName: "Các máy khuấy đều đang bận" } : null;
             }
             return overlaps.length > 0 ? overlaps[0] : null;
         }
@@ -190,7 +190,7 @@
                     if(b.device === 'khuay-tu') { typeClass = 'item-may-khuay'; badgeClass = 'may-khuay'; deviceName = "Máy Khuấy Từ"; }
                     else if(b.device === 'may-li-tam') { typeClass = 'item-may-li-tam'; badgeClass = 'may-li-tam'; deviceName = "Máy Li Tâm"; }
                     else if(b.device === 'lo-vuong') { deviceName = "Lò Nung Vuông"; }
-                    else if(b.device === 'lo-nho') { deviceName = "Lò Nung Nhỏ"; }
+                    else if(b.device === 'lo-nho') { deviceName = "Lò Nung Trong Phòng"; }
 
                     const availableNext = new Date(new Date(b.end).getTime() + (b.cool * 3600000));
 
@@ -200,10 +200,10 @@
                         <span class="badge ${badgeClass}">${deviceName}</span>
                         <button class="btn-delete" onclick="window.del('${b.id}')">Xóa</button>
                         <p><strong>Người dùng:</strong> ${b.userName}</p>
-                        <p><strong>Thông số:</strong> ${b.param || 'N/A'}</p>
+                        <p><strong>Thông số (Nhiệt độ/Tốc độ):</strong> ${b.param || 'N/A'}</p>
                         <p><strong>Thời gian:</strong> ${formatDate(b.start)} ➔ ${formatDate(b.end)}</p>
                         <p style="color: #ea580c; font-size: 0.9em;">
-                            <em>*Nghỉ/nguội: ${b.cool}h. Tiếp theo lúc: <strong>${formatDate(availableNext)}</strong></em>
+                            <em>*Người tiếp theo có thể dùng lúc: <strong>${formatDate(availableNext)}</strong></em>
                         </p>
                     `;
                     container.appendChild(div);
