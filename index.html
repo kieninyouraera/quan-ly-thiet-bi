@@ -161,9 +161,12 @@
                     div.innerHTML = `
                         <span class="badge ${badgeClass}">${name.toUpperCase()}</span>
                         <button class="btn-delete" onclick="window.del('${b.id}')">Xóa</button>
-                        <p><strong>${b.userName}</strong> | ${b.param || ''}</p>
-                        <p style="font-size:0.85em">${formatDate(b.start)} ➔ ${formatDate(b.end)}</p>
-                        ${b.cool > 0 ? `<p style="color:orange; font-size:0.8em"><i>+ Nghỉ ${b.cool}h</i></p>` : ''}
+                        <p><strong>Người dùng: </strong>${b.userName}</p>
+                        <p><strong>Nhiệt độ:</strong> ${b.param}°C</p>
+                        <p><strong>Thời gian dùng:</strong> ${formatDate(b.start)} ➔ ${formatDate(b.end)}</p>
+                        <p style="color: #ea580c; font-size: 0.9em;">
+                        <em>*Người tiếp theo có thể dùng lúc: <strong>${formatDate(availableNext)}</strong></em>
+                        </p>
                     `;
                     container.appendChild(div);
                 });
