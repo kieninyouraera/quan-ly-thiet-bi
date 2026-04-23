@@ -42,7 +42,7 @@
 </head>
 <body>
 
-    <h1 style="text-align: center; color: var(--primary);">🧪 Quản Lý Thiết Bị Phòng Thí Nghiệm</h1>
+    <h1 style="text-align: center; color: var(--primary);">🧪 Quản Lý Thiết Bị Phòng Lab</h1>
 
     <div class="container">
         <div class="card">
@@ -57,12 +57,12 @@
                     <select id="deviceId">
                         <optgroup label="Lò Nung">
                             <option value="lo-vuong">Lò Nung Vuông</option>
-                            <option value="lo-nho">Lò Nung Nhỏ</option>
+                            <option value="lo-nho">Lò Nung Trong Phòng</option>
                         </optgroup>
-                        <optgroup label="Máy Khuấy Từ (Có 3 máy)">
+                        <optgroup label="Máy Khuấy Từ">
                             <option value="khuay-tu">Máy Khuấy Từ</option>
                         </optgroup>
-                        <optgroup label="Khác">
+                        <optgroup label="Máy Li Tâm">
                             <option value="may-li-tam">Máy Li Tâm</option>
                         </optgroup>
                     </select>
@@ -132,7 +132,7 @@
 
             // Nếu là máy khuấy từ, cho phép tối đa 3 người trùng giờ
             if (newB.device === 'khuay-tu') {
-                return overlaps.length >= 3 ? { name: "Cả 3 máy khuấy đều đang bận" } : null;
+                return overlaps.length >= 3 ? { name: "Các máy khuấy đều đang bận" } : null;
             }
             
             // Các thiết bị khác chỉ cho phép 1 người
@@ -154,7 +154,7 @@
                     if(b.device.includes('khuay')) { typeClass = 'item-may-khuay'; badgeClass = 'may-khuay'; name = "Máy Khuấy Từ"; }
                     if(b.device === 'may-li-tam') { typeClass = 'item-may-li-tam'; badgeClass = 'may-li-tam'; name = "Máy Li Tâm"; }
                     if(b.device === 'lo-vuong') name = "Lò Vuông";
-                    if(b.device === 'lo-nho') name = "Lò Nhỏ";
+                    if(b.device === 'lo-nho') name = "Lò Trong Phòng";
 
                     const div = document.createElement('div');
                     div.className = `booking-item ${typeClass}`;
